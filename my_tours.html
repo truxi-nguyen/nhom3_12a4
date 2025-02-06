@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour của bạn</title>
+    <style>
+        /* ✅ Định dạng tổng thể trang */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* ✅ Container chính */
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ✅ Tiêu đề */
+        h1 {
+            font-size: 26px;
+            color: #2d3b2f;
+            margin-bottom: 20px;
+        }
+
+        /* ✅ Danh sách tour */
+        #tour-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        /* ✅ Mỗi tour */
+        .tour-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        /* ✅ Nút hủy tour */
+        .cancel-tour {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .cancel-tour:hover {
+            background: linear-gradient(135deg, #c82333, #a71d2a);
+            transform: scale(1.05);
+        }
+
+        /* ✅ Nút quay về */
+        #back-home {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            font-size: 16px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        #back-home:hover {
+            background: linear-gradient(135deg, #0056b3, #004085);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Danh sách Tour của bạn</h1>
+        <ul id="tour-list"></ul>
+        <a href="index.html" id="back-home">🏠 Quay về trang chủ</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const tourList = document.getElementById("tour-list");
+    
+    // Kiểm tra xem phần tử có tồn tại không
+    if (!tourList) {
+        console.error("Không tìm thấy phần tử #tour-list. Kiểm tra HTML của bạn!");
+        return;
+    }
+
+    let bookedTours = JSON.parse(localStorage.getItem("bookedTours")) || [];
+
+    function renderTours() {
+        tourList.innerHTML = "";
+
+        if (!bookedTours || bookedTours.length === 0) {
+            tourList.innerHTML = "<p>Bạn chưa đặt tour nào.</p>";
+            return;
+        }
+
+        bookedTours.forEach((tour, index) => {
+            const li = document.createElement("li");
+            li.className = "tour-item";
+            li.innerHTML = `
+                <p><strong>Địa điểm:</strong> ${tour.destination}</p>
+                <p><strong>Số người:</strong> ${tour.numberOfPeople} người</p>
+                <p><strong>Số ngày:</strong> ${tour.numberOfDays} ngày</p>
+                <p><strong>Ngày khởi hành:</strong> ${tour.date}</p>
+                <button class="cancel-tour" data-index="${index}">❌ Hủy tour</button>
+            `;
+            tourList.appendChild(li);
+        });
+
+        document.querySelectorAll(".cancel-tour").forEach(button => {
+            button.addEventListener("click", function () {
+                const index = this.getAttribute("data-index");
+                bookedTours.splice(index, 1);
+                localStorage.setItem("bookedTours", JSON.stringify(bookedTours));
+                renderTours();
+                alert("Tour đã được hủy!");
+            });
+        });
+    }
+
+    renderTours();
+});
+    </script>
+</body>
+</html>
