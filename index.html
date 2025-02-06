@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Du Lịch Bến Tre - Các Điểm Tham Quan Nổi Tiếng</title>
+
+  <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+  <section id= "header">
+
+    <div class="header">
+
+        <h1>Du Lịch Bến Tre</h1>
+
+        <nav>
+
+            <ul class="menu">
+
+                <li><a href="#gioi-thieu">Giới Thiệu</a></li>
+
+
+                <li><a href="#danh-gia">Đánh Giá</a></li>
+                 <li><a href="login.html" id="login-btn">Đăng Nhập</a></li>
+                <ul id="menu">
+    <li><a href="my_tours.html" id="my-tours-menu">Tour của bạn</a></li>
+</ul>
+
+
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</section>
+
+
+    <section id="gioi-thieu">
+
+        <h2>Các Điểm Tham Quan Nổi Tiếng</h2>
+
+        <div class="search-box">
+
+            <input type="text" id="search-input" placeholder="Tìm kiếm địa điểm..." oninput="searchLocation()">
+
+        </div>
+            <div id="pagination">
+    <button id="prev-page">« Trước</button>
+    <span id="page-info">Trang 1</span>
+    <button id="next-page">Sau »</button>
+</div>
+
+        <div class="points" id="points-container">
+
+            <div class="point">
+
+                <img src="https://dulich.bentre.gov.vn/PublishingImages/DDL%20CON%20NGOAI%20-%202272022%20(2).jpg" alt="Cồn Phụng">
+
+                <h3>Cồn Phụng</h3>
+
+                <p></p>
+
+                <a href="conphung.html" id="xemchitiet"> xem chi tiết</a>
+
+
+
+            </div>
+
+            <div class="point">
+
+                <img src="https://www.homepaylater.vn/static/e291c03b24933b940664f33d2ba0e4f8/67090/cac_khu_du_lich_ben_tre_mang_ve_dep_cua_xu_so_miet_vuon_thanh_binh_tho_mong_7dec6b34ee.webp" alt="Cồn Quy">
+
+                <h3>Cồn Quy</h3>
+
+                <p></p>
+
+                <a href="chitietconquy.html" id="xemchitiet"> xem chi tiết</a>
+
+
+
+            </div>
+
+            <div class="point">
+
+                <img src="https://media.loveitopcdn.com/20397/ben-tre.png" alt="Cồn Bảo">
+
+                <h3>Cồn Bảo</h3>
+
+                <p></p>
+
+                <a href="chitietconbao.html" id="xemchitiet"> xem chi tiết</a>
+
+            </div>
+
+                        <div class="point">
+
+
+
+                <img src="https://www.homepaylater.vn/static/e291c03b24933b940664f33d2ba0e4f8/67090/cac_khu_du_lich_ben_tre_mang_ve_dep_cua_xu_so_miet_vuon_thanh_binh_tho_mong_7dec6b34ee.webp" alt="Cồn Quy">
+
+
+
+                <h3>Cồn Quy</h3>
+
+                <p>.</p>
+
+                <a href="chitietconquy.html" id="xemchitiet"> xem chi tiết</a>
+
+
+
+            </div>
+
+                        <div class="point">
+
+
+
+                <img src="https://www.homepaylater.vn/static/e291c03b24933b940664f33d2ba0e4f8/67090/cac_khu_du_lich_ben_tre_mang_ve_dep_cua_xu_so_miet_vuon_thanh_binh_tho_mong_7dec6b34ee.webp" alt="Cồn Quy">
+
+
+
+                <h3>Cồn Quy</h3>
+
+                <p></p>
+
+                <a href="chitietconquy.html" id="xemchitiet"> xem chi tiết</a>
+
+
+
+            </div>
+
+                        <div class="point">
+
+
+
+                <img src="https://www.homepaylater.vn/static/e291c03b24933b940664f33d2ba0e4f8/67090/cac_khu_du_lich_ben_tre_mang_ve_dep_cua_xu_so_miet_vuon_thanh_binh_tho_mong_7dec6b34ee.webp" alt="Cồn Quy">
+
+
+
+                <h3>Cồn Quy</h3>
+
+                <p></p>
+
+                <a href="chitietconquy.html" id="xemchitiet"> xem chi tiết</a>
+
+
+
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+<section id="dat-tour">
+    <h2>Đặt Tour</h2>
+    <div class="tour-container">
+        <form id="tour-form">
+            <label for="destination">Chọn Điểm Đến:</label>
+            <select id="destination">
+                <option value="Cồn Phụng">Cồn Phụng</option>
+                <option value="Cồn Quy">Cồn Quy</option>
+                <option value="Cồn Bảo">Cồn Bảo</option>
+            </select>
+
+            <label for="people">Số Lượng Người:</label>
+            <input type="number" id="people" placeholder="Nhập số người" min="1" required>
+
+            <label for="days">Số Ngày Đi:</label>
+            <input type="number" id="days" placeholder="Nhập số ngày" min="1" required>
+
+            <label for="date">Ngày Dự Kiến:</label>
+            <input type="date" id="date" required>
+
+            <button type="submit" id="book-tour">Đặt Tour</button>
+        </form>
+        <p id="tour-message" style="color: green; display: none;">✅ Đặt tour thành công!</p>
+    </div>
+</section>
+    <section id="danh-gia">
+
+        <h2>Đánh Giá và Bình Luận</h2>
+
+    
+        </div>
+        <form id="review-form">
+    <textarea id="review-text" placeholder="Chia sẻ cảm nhận của bạn..." rows="4" style="width: 100%;"></textarea>
+    <button type="submit">Gửi Đánh Giá</button>
+</form>
+<div id="reviews"></div>
+<p id="login-status"></p>
+</section>
+
+
+
+    <footer>
+
+        <p>&copy; 2025 Du Lịch Bến Tre - Tất cả các quyền được bảo vệ</p>
+
+    </footer>
+
+    <script src="a.js"></script>
+
+
+
+
+
+</body>
+
+</html>

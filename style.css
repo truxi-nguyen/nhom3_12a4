@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    line-height: 1.6;
+}
+
+.header {
+    background-image: url("https://media.loveitopcdn.com/20397/ben-tre.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+    max-height: 500px;
+}
+#gioi-thieu{
+  text-align:center;
+}
+nav ul {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+#xemchitiet{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    max-width: 100px;
+}
+
+#xemchitiet:hover {
+    background-color: #45a049;
+    text-decoration:bold;
+    transform: scale(1.05);
+}
+
+.#xemchitiet:active {
+    transform: scale(0.98);
+}
+  
+}
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #2d3b2f;
+}
+
+.points {
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.point {
+    width: 30%;
+    background-color: #e0f7fa;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.point img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.point h3 {
+    margin-top: 10px;
+}
+
+.search-box {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box input {
+    padding: 10px;
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.menu {
+    display: inline-block;
+    gap: 5px;
+    padding: 12px 24px;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(4, 39, 190, 0.3);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.menu li:hover {
+    text-decoration: underline;
+    text-decoration: bbold
+    
+}
+
+button {
+    background-color: #2d3b2f;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #1a2621;
+}
+#pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#pagination button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/* 📌 Thiết kế tổng thể cho phần đặt tour */
+#dat-tour {
+    background-color: #f8f9fa;
+    padding: 30px;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* 📌 Tiêu đề */
+#dat-tour h2 {
+    color: #2d3b2f;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* 📌 Thiết kế form */
+.tour-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#tour-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 📌 Label của form */
+#tour-form label {
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    display: block;
+    color: #333;
+}
+
+/* 📌 Input và Select */
+#tour-form input,
+#tour-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+#tour-form input:focus,
+#tour-form select:focus {
+    border-color: #2d3b2f;
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(45, 59, 47, 0.3);
+}
+
+/* 📌 Nút đặt tour */
+#book-tour {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+#book-tour:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+    transform: scale(1.05);
+}
+
+/* 📌 Hiển thị thông báo đặt tour */
+#tour-message {
+    font-size: 18px;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #d4edda;
+    border-left: 5px solid #28a745;
+    color: #155724;
+    display: none;
+    border-radius: 5px;
+}
+
+#pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#pagination span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+}
