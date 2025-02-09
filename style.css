@@ -9,6 +9,29 @@ body {
     background-color: #f0f0f0;
     line-height: 1.6;
 }
+body {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-in-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 .header {
     background-image: url("https://media.loveitopcdn.com/20397/ben-tre.png");
@@ -27,112 +50,193 @@ body {
 #gioi-thieu{
   text-align:center;
 }
-nav ul {
-    list-style-type: none;
-    margin: 10px 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-#xemchitiet{
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    width: 100%;
-    max-width: 100px;
-}
-
-#xemchitiet:hover {
-    background-color: #45a049;
-    text-decoration:bold;
-    transform: scale(1.05);
-}
-
-.#xemchitiet:active {
-    transform: scale(0.98);
-}
-  
-}
-section {
-    padding: 20px;
-    margin: 20px;
-    background-color: white;
-    border-radius: 8px;
-}
-
-h2 {
-    color: #2d3b2f;
-}
-
-.points {
+/* 🏠 Header với ảnh nền */
+header {
     display: flex;
-    flex-wrap: wrap;
-    align-items:center;
+    justify-content: space-between;
+    align-items: center;
+    background: url('https://vegiagoc.com/Upload/images/dua-em-ve-xu-dua-qua-cac-diem-du-lich-ben-tre-noi-tieng%20(1).png ') no-repeat center center/cover;
+    padding: 15px 50px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    height: 80px; /* Đảm bảo chiều cao cố định */
+}
+
+/* 🌙 Hiệu ứng overlay tối để chữ dễ đọc */
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Lớp phủ tối để tăng độ tương phản */
+    z-index: -1;
+}
+.pagination-container {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.pagination-container button {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-container button:hover {
+    background: linear-gradient(to right, #ff6b6b, #ffb88c);
+    transform: scale(1.1);
+}
+
+.pagination-container button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+#page-info {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 🎯 Logo */
+.logo h1 {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* 📌 Menu */
+.menu {
+    list-style: none;
+    display: flex;
     gap: 20px;
 }
 
-.point {
-    width: 30%;
-    background-color: #e0f7fa;
-    padding: 10px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* 🔗 Liên kết menu */
+.menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
+/* 🔥 Hiệu ứng hover */
+.menu li a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* 📱 Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+        height: auto; /* Điều chỉnh cho mobile */
+    }
+
+
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu li a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+    }
+}
+.points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+/* Định dạng mỗi điểm du lịch */
+.point {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+/* Hiệu ứng nổi bật khi di chuột */
+.point:hover {
+    transform: scale(1.05);
+}
+
+/* Định dạng ảnh */
 .point img {
     width: 100%;
-    border-radius: 20px;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
+/* Tiêu đề điểm đến */
 .point h3 {
-    margin-top: 10px;
+    font-size: 20px;
+    color: #2d3b2f;
+    margin: 10px 0;
 }
 
-.search-box {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
+/* Mô tả điểm đến */
+.point p {
+    font-size: 14px;
+    color: #555;
+    padding: 0 10px;
 }
 
-.search-box input {
-    padding: 10px;
-    width: 50%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.menu {
-    display: inline-block;
-    gap: 5px;
-    padding: 12px 24px;
-    font-size: 22px;
-    font-weight: bold;
+/* Nút xem chi tiết */
+.point a {
+    display: block;
+    background: #2d3b2f;
     color: white;
-    background-color: rgba(4, 39, 190, 0.3);
-    border-radius: 20px;
+    padding: 10px;
+    margin: 10px auto;
+    width: 80%;
+    border-radius: 5px;
     text-decoration: none;
-    transition: 0.3s;
+    transition: background 0.3s;
 }
 
-.menu li:hover {
-    text-decoration: underline;
-    text-decoration: bbold
-    
+.point a:hover {
+    background: #1a2621;
 }
 
 button {
@@ -163,22 +267,23 @@ button:hover {
 }
 /* 📌 Thiết kế tổng thể cho phần đặt tour */
 #dat-tour {
-    background-color: #f8f9fa;
+    max-width: 700px;
+    background: white;
     padding: 30px;
-    margin: 30px auto;
-    width: 90%;
-    max-width: 600px;
+    margin: auto;
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
-/* 📌 Tiêu đề */
-#dat-tour h2 {
-    color: #2d3b2f;
-    font-size: 28px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+#book-tour {
+    background: #28a745;
+    transition: 0.3s;
+}
+
+#book-tour:hover {
+    background: #218838;
+    transform: scale(1.05);
 }
 
 /* 📌 Thiết kế form */
@@ -224,22 +329,7 @@ button:hover {
 }
 
 /* 📌 Nút đặt tour */
-#book-tour {
-    background: linear-gradient(135deg, #28a745, #218838);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
 
-#book-tour:hover {
-    background: linear-gradient(135deg, #218838, #1e7e34);
-    transform: scale(1.05);
-}
 
 /* 📌 Hiển thị thông báo đặt tour */
 #tour-message {
@@ -262,6 +352,137 @@ button:hover {
     font-size: 18px;
     font-weight: bold;
 }
+/* 📌 Tổng thể phần đánh giá */
+#danh-gia {
+    background-color: #f8f9fa;
+    padding: 30px;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 📌 Tiêu đề */
+#danh-gia h2 {
+    text-align: center;
+    color: #2d3b2f;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* 📌 Phần thông báo đăng nhập */
+#login-status {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+}
+
+/* 📌 Thiết kế khung đánh giá */
+.review-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 📌 Thiết kế form nhập đánh giá */
+#review-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 📌 Ô nhập đánh giá */
+#review-text {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+}
+
+/* 📌 Nút gửi đánh giá */
+#review-form button {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+#review-form button:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+    transform: scale(1.05);
+}
+
+/* 📌 Danh sách đánh giá */
+#reviews {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* 📌 Tiêu đề danh sách đánh giá */
+#reviews h3 {
+    text-align: center;
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* 📌 Mỗi đánh giá */
+.review {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+/* 📌 Hiệu ứng hover cho đánh giá */
+.review:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 📌 Tên người đánh giá */
+.review strong {
+    font-size: 16px;
+    color: #2d3b2f;
+}
+
+/* 📌 Nội dung đánh giá */
+.review p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+.delete-review {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.delete-review:hover {
+    background-color: darkred;
+}
+
 
 footer {
     text-align: center;

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour của bạn</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         /* ✅ Định dạng tổng thể trang */
         body {
@@ -92,10 +93,9 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     const tourList = document.getElementById("tour-list");
-    
-    // Kiểm tra xem phần tử có tồn tại không
+
     if (!tourList) {
         console.error("Không tìm thấy phần tử #tour-list. Kiểm tra HTML của bạn!");
         return;
@@ -119,6 +119,7 @@
                 <p><strong>Số người:</strong> ${tour.numberOfPeople} người</p>
                 <p><strong>Số ngày:</strong> ${tour.numberOfDays} ngày</p>
                 <p><strong>Ngày khởi hành:</strong> ${tour.date}</p>
+                <p><strong>Ngày đặt tour:</strong> ${tour.bookingTime}</p>
                 <button class="cancel-tour" data-index="${index}">❌ Hủy tour</button>
             `;
             tourList.appendChild(li);
@@ -127,10 +128,31 @@
         document.querySelectorAll(".cancel-tour").forEach(button => {
             button.addEventListener("click", function () {
                 const index = this.getAttribute("data-index");
-                bookedTours.splice(index, 1);
-                localStorage.setItem("bookedTours", JSON.stringify(bookedTours));
-                renderTours();
-                alert("Tour đã được hủy!");
+
+                // Hiển thị xác nhận hủy tour bằng SweetAlert2
+                Swal.fire({
+                    title: "Bạn có chắc muốn hủy tour?",
+                    text: "Hành động này không thể hoàn tác!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Hủy tour",
+                    cancelButtonText: "Giữ lại",
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        bookedTours.splice(index, 1);
+                        localStorage.setItem("bookedTours", JSON.stringify(bookedTours));
+                        renderTours();
+
+                        Swal.fire({
+                            title: "Đã hủy tour!",
+                            text: "Tour của bạn đã bị hủy thành công.",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        });
+                    }
+                });
             });
         });
     }

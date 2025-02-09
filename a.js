@@ -1,110 +1,174 @@
-// Lọc địa điểm theo từ khóa tìm kiếm
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".point");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, { threshold: 0.3 });
+
+    elements.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = "translateY(20px)";
+        observer.observe(el);
+    });
+});
 function searchLocation() {
     const searchInput = document.getElementById("search-input").value.toLowerCase();
     const points = document.querySelectorAll(".point");
 
     points.forEach(point => {
         const title = point.querySelector("h3").innerText.toLowerCase();
-        if (title.includes(searchInput)) {
-            point.style.display = "block";
-        } else {
-            point.style.display = "none";
-        }
+        point.style.display = title.includes(searchInput) ? "block" : "none";
     });
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    let loginBtn = document.getElementById("login-btn");
+    let loggedInUser = localStorage.getItem("loggedInUser");
 
-// Thêm đánh giá vào danh sách
-
-   
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        let loginBtn = document.getElementById("login-btn");
-        let loggedInUser = localStorage.getItem("loggedInUser");
-
+    function updateLoginButton() {
         if (loggedInUser) {
             loginBtn.innerText = "Đăng Xuất";
-            loginBtn.href = "#"; // Không chuyển trang khi nhấn
-            loginBtn.addEventListener("click", function () {
-                localStorage.removeItem("loggedInUser");
-                alert("Bạn đã đăng xuất!");
-                window.location.reload(); // Tải lại trang để cập nhật giao diện
-            });
+            loginBtn.href = "#";
+            loginBtn.removeEventListener("click", logoutFunction);
+            loginBtn.addEventListener("click", logoutFunction);
         } else {
             loginBtn.innerText = "Đăng Nhập";
-            loginBtn.href = "login.html"; // Chuyển đến trang đăng nhập
+            loginBtn.href = "login.html";
+            loginBtn.removeEventListener("click", logoutFunction);
         }
-    });
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        let loginStatus = document.getElementById("login-status");
-        let loggedInUser = localStorage.getItem("loggedInUser");
+    }
 
-        if (loggedInUser) {
-            loginStatus.innerHTML = `Chào <strong>${loggedInUser}</strong>, bạn có thể đánh giá bên dưới!`;
-        } else {
-            loginStatus.innerHTML = `Bạn cần <a href="login.html">đăng nhập</a> để đánh giá.`;
-        }
-    });
+    function logoutFunction() {
+        Swal.fire({
+            title: "Bạn có chắc muốn đăng xuất?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Đăng xuất",
+            cancelButtonText: "Hủy",
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem("loggedInUser");
+                loggedInUser = null; // Cập nhật trạng thái đăng nhập
+                updateLoginButton();
+                Swal.fire("Đã đăng xuất!", "", "success");
+            }
+        });
+    }
 
-    document.getElementById("review-form").addEventListener("submit", function (e) {
+    updateLoginButton();
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let loginStatus = document.getElementById("login-status");
+    let loggedInUser = localStorage.getItem("loggedInUser");
+
+    loginStatus.innerHTML = loggedInUser
+        ? `Chào <strong>${loggedInUser}</strong>, bạn có thể đánh giá bên dưới!`
+        : `Bạn cần <a href="login.html">đăng nhập</a> để đánh giá.`;
+
+    const reviewForm = document.getElementById("review-form");
+    const reviewText = document.getElementById("review-text");
+    const reviewsContainer = document.querySelector(".review-list");
+
+    let savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+    function displayReviews() {
+        reviewsContainer.innerHTML = "";
+        savedReviews.forEach((review, index) => {
+            let reviewDiv = document.createElement("div");
+            reviewDiv.className = "review";
+            reviewDiv.innerHTML = `
+                <strong>${review.user}:</strong>
+                <p>${review.text}</p>
+                ${review.user === loggedInUser ? `<button class="delete-review" data-index="${index}">Xóa</button>` : ""}
+            `;
+            reviewsContainer.appendChild(reviewDiv);
+        });
+
+        document.querySelectorAll(".delete-review").forEach(button => {
+            button.addEventListener("click", function () {
+                let index = this.getAttribute("data-index");
+                
+                Swal.fire({
+                    title: "Bạn có chắc chắn muốn xóa đánh giá?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Xóa",
+                    cancelButtonText: "Hủy",
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        savedReviews.splice(index, 1);
+                        localStorage.setItem("reviews", JSON.stringify(savedReviews));
+                        displayReviews();
+                        Swal.fire("Đã xóa!", "Đánh giá đã bị xóa.", "success");
+                    }
+                });
+            });
+        });
+    }
+
+    displayReviews();
+
+    reviewForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        
-        let loggedInUser = localStorage.getItem("loggedInUser");
+
         if (!loggedInUser) {
-            alert("Bạn cần đăng nhập để đánh giá!");
+            Swal.fire("Thông báo", "Bạn cần đăng nhập để đánh giá!", "info");
             return;
         }
 
-        let reviewText = document.getElementById("review-text").value;
-        let reviewsContainer = document.getElementById("reviews");
+        let reviewContent = reviewText.value.trim();
+        if (reviewContent) {
+            let newReview = { user: loggedInUser, text: reviewContent };
+            savedReviews.push(newReview);
+            localStorage.setItem("reviews", JSON.stringify(savedReviews));
 
-        if (reviewText.trim()) {
-            let reviewDiv = document.createElement("div");
-            reviewDiv.className = "review";
-            reviewDiv.innerHTML = `<strong>${loggedInUser}:</strong> ${reviewText}`;
-
-            reviewsContainer.appendChild(reviewDiv);
-            document.getElementById("review-text").value = ""; // Xóa nội dung nhập vào
-            alert("Đánh giá của bạn đã được thêm!");
+            reviewText.value = "";
+            displayReviews();
+            Swal.fire("Thành công!", "Đánh giá của bạn đã được thêm!", "success");
         } else {
-            alert("Vui lòng nhập nội dung đánh giá!");
+            Swal.fire("Lỗi!", "Vui lòng nhập nội dung đánh giá!", "error");
         }
     });
-    
+});
+
+// Phân trang
 document.addEventListener("DOMContentLoaded", function () {
-    const pointsPerPage = 3; // Số lượng địa điểm trên mỗi trang
-    let currentPage = 1; 
-
-    const points = document.querySelectorAll(".point");
-    const totalPages = 4; // Tổng số trang là 3
-
-    const pageInfo = document.getElementById("page-info");
-    const prevBtn = document.getElementById("prev-page");
-    const nextBtn = document.getElementById("next-page");
+    let itemsPerPage = 3;
+    let currentPage = 1;
+    let items = document.querySelectorAll(".point");
+    let totalPages = Math.ceil(items.length / itemsPerPage);
 
     function showPage(page) {
-        let startIndex = (page - 1) * pointsPerPage;
-        let endIndex = startIndex + pointsPerPage;
-
-        points.forEach((point, index) => {
-            point.style.display = (index >= startIndex && index < endIndex) ? "block" : "none";
+        items.forEach((item, index) => {
+            item.style.display =
+                index >= (page - 1) * itemsPerPage && index < page * itemsPerPage
+                    ? "block"
+                    : "none";
         });
 
-        pageInfo.textContent = `Trang ${page} / ${totalPages}`;
-
-        prevBtn.disabled = (page === 1);
-        nextBtn.disabled = (page === totalPages);
+        document.getElementById("page-info").textContent = `Trang ${page}`;
+        document.getElementById("prev-page").disabled = page === 1;
+        document.getElementById("next-page").disabled = page === totalPages;
     }
 
-    prevBtn.addEventListener("click", function () {
+    document.getElementById("prev-page").addEventListener("click", function () {
         if (currentPage > 1) {
             currentPage--;
             showPage(currentPage);
         }
     });
 
-    nextBtn.addEventListener("click", function () {
+    document.getElementById("next-page").addEventListener("click", function () {
         if (currentPage < totalPages) {
             currentPage++;
             showPage(currentPage);
@@ -113,16 +177,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     showPage(currentPage);
 });
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const tourForm = document.getElementById("tour-form");
-    const tourMessage = document.getElementById("tour-message");
 
     tourForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
         let loggedInUser = localStorage.getItem("loggedInUser");
         if (!loggedInUser) {
-            alert("Bạn cần đăng nhập để đặt tour!");
+            Swal.fire("Thông báo", "Bạn cần đăng nhập để đặt tour!", "info");
             return;
         }
 
@@ -130,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const numberOfPeople = document.getElementById("people").value;
         const numberOfDays = document.getElementById("days").value;
         const date = document.getElementById("date").value;
+        const bookingTime = new Date().toLocaleString(); 
 
         if (destination && numberOfPeople > 0 && numberOfDays > 0 && date) {
             let bookedTours = JSON.parse(localStorage.getItem("bookedTours")) || [];
@@ -138,15 +204,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 destination,
                 numberOfPeople,
                 numberOfDays,
-                date
+                date,
+                bookingTime
             });
             localStorage.setItem("bookedTours", JSON.stringify(bookedTours));
 
-            tourMessage.style.display = "block";
-            setTimeout(() => tourMessage.style.display = "none", 3000);
+            Swal.fire("Thành công!", "Tour của bạn đã được đặt!", "success");
             tourForm.reset();
         } else {
-            alert("Vui lòng nhập đầy đủ thông tin hợp lệ.");
+            Swal.fire("Lỗi!", "Vui lòng nhập đầy đủ thông tin hợp lệ.", "error");
         }
     });
-}); 
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+});

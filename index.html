@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Du Lịch Bến Tre - Các Điểm Tham Quan Nổi Tiếng</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <link rel="stylesheet" href="style.css">
 
@@ -16,147 +19,118 @@
 
 <body>
   <section id= "header">
-
-    <div class="header">
-
+    <header>
+    <div class="logo">
         <h1>Du Lịch Bến Tre</h1>
-
-        <nav>
-
-            <ul class="menu">
-
-                <li><a href="#gioi-thieu">Giới Thiệu</a></li>
-
-
-                <li><a href="#danh-gia">Đánh Giá</a></li>
-                 <li><a href="login.html" id="login-btn">Đăng Nhập</a></li>
-                <ul id="menu">
-    <li><a href="my_tours.html" id="my-tours-menu">Tour của bạn</a></li>
-</ul>
-
-
-
-            </ul>
-
-        </nav>
-
     </div>
+    <nav>
+        <ul class="menu">
+            <li><a href="#gioi-thieu"><i class="fas fa-map-marked-alt"></i> Giới Thiệu</a></li>
+            <li><a href="#danh-gia"><i class="fas fa-star"></i> Đánh Giá</a></li>
+            <li><a href="login.html" id="login-btn"><i class="fas fa-user"></i> Đăng Nhập</a></li>
+            <li><a href="my_tours.html" id="my-tours-menu"><i class="fas fa-suitcase"></i> Tour của bạn</a></li>
+        </ul>
+    </nav>
+</header> 
 
 </section>
 
 
-    <section id="gioi-thieu">
-
-        <h2>Các Điểm Tham Quan Nổi Tiếng</h2>
-
-        <div class="search-box">
-
-            <input type="text" id="search-input" placeholder="Tìm kiếm địa điểm..." oninput="searchLocation()">
-
+<section id="gioi-thieu">
+    <h2>Các Điểm Tham Quan Nổi Tiếng</h2>
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="🔍 Tìm kiếm địa điểm..." oninput="searchLocation()">
+    </div>
+    <div class="points">
+        <div class="point">
+            <img src="https://ik.imagekit.io/tvlk/blog/2022/11/khu-du-lich-con-phung-4-1024x682.jpg" alt="Cồn Phụng">
+            <h3>Cồn Phụng</h3>
+            <p>Một trong những địa điểm du lịch sinh thái hấp dẫn tại Bến Tre.</p>
+            <a href="conphung.html">Xem chi tiết</a>
         </div>
-            <div id="pagination">
-    <button id="prev-page">« Trước</button>
-    <span id="page-info">Trang 1</span>
-    <button id="next-page">Sau »</button>
+    
+        
+    
+        <div class="point">
+            <img src="https://image.vietgoing.com/destination/large/vietgoing_iuo2103252611.webp "alt="Di tích Đạo Dừa">
+            <h3>Di tích Đạo Dừa</h3>
+            <p>Địa danh lịch sử gắn liền với giáo phái Đạo Dừa độc đáo tại Bến Tre.</p>
+            <a href="daodua.html">Xem chi tiết</a>
+        </div>
+    
+        <div class="point">
+            <img src="https://diemdenantoan.sgtiepthi.vn/wp-content/uploads/2023/07/e59de430821e5140080f.jpg" alt="Bảo tàng tỉnh Bến Tre">
+            <h3>Bảo tàng tỉnh Bến Tre</h3>
+            <p>Nơi lưu giữ những di sản văn hóa và lịch sử của vùng đất Bến Tre.</p>
+            <a href="tang.html">Xem chi tiết</a>
+        </div>
+    
+        <div class="point">
+            <img src="https://thamhiemmekong.com/wp-content/uploads/2020/06/langmonguyendinhchieu01.jpg" alt="Đền Thờ và Mộ Nguyễn Đình Chiểu">
+            <h3>Đền Thờ và Mộ Nguyễn Đình Chiểu</h3>
+            <p>Địa điểm lịch sử tưởng nhớ nhà thơ yêu nước Nguyễn Đình Chiểu.</p>
+            <a href="ndc.html">Xem chi tiết</a>
+        </div>
+    
+        <div class="point">
+            <img src="https://mia.vn/media/uploads/blog-du-lich/den-dinh-phu-tu-ben-tre-chiem-nguong-loi-kien-truc-co-xua-1-1666622354.jpg" alt="Đình Phú Tự">
+            <h3>Đình Phú Tự</h3>
+            <p>Một trong những ngôi đình cổ kính, mang đậm nét văn hóa Nam Bộ.</p>
+            <a href="phu.html">Xem chi tiết</a>
+        </div>
+    
+        
+    
+        <div class="point">
+            <img src="https://images.vietnamtourism.gov.vn/vn/images/2022/thang_1/2701.hoa_giay_phu_son1.jpg" alt="Làng hoa giấy Bến Tre">
+            <h3>Làng hoa giấy Bến Tre</h3>
+            <p>Thiên đường của những loài hoa đầy màu sắc, điểm đến hấp dẫn cho du khách.</p>
+            <a href="hoa.html">Xem chi tiết</a>
+        </div>
+    
+        <div class="point">
+            <img src="https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/05_2023/con-oc.jpg" alt="Khu du lịch Cồn Ốc">
+            <h3>Khu du lịch Cồn Ốc</h3>
+            <p>Địa điểm lý tưởng cho những ai yêu thích du lịch sinh thái và sông nước.</p>
+            <a href="oc.html">Xem chi tiết</a>
+        </div>
+    
+        <div class="point">
+            <img src="https://scontent.iocvnpt.com/resources/portal//Images/BTE/superadminportal.bte/dia_diem/lang_xanh/118476835_336636957683588_2232751608406381815_n_875333667.jpg" alt="Làng Xanh Bến Tre">
+            <h3>Làng Xanh Bến Tre</h3>
+            <p>Khu du lịch sinh thái hấp dẫn với không gian xanh mát, gần gũi thiên nhiên.</p>
+            <a href="xanh.html">Xem chi tiết</a>
+        </div>
+    
+        <div class="point">
+            <img src="https://dulichokela.com/wp-content/uploads/2024/01/khu-di-tich-dong-khoi-ben-tre-2.jpg" alt="Nhà truyền thống Đồng Khởi">
+            <h3>Nhà truyền thống Đồng Khởi</h3>
+            <p>Di tích lịch sử quan trọng, lưu giữ các hiện vật của phong trào Đồng Khởi.</p>
+            <a href="khoi.html">Xem chi tiết</a>
+        </div>
+    
+        <div class="point">
+            <img src="https://zoomtravel.vn/upload/images/chua-van-phuoc-1.jpg" alt="Chùa Vạn Phước">
+            <h3>Chùa Vạn Phước</h3>
+            <p>Ngôi chùa linh thiêng với kiến trúc độc đáo và không gian thanh tịnh.</p>
+            <a href="chua.html">Xem chi tiết</a>
+        </div>
+    
+        <div class="point">
+            <img src="https://dulichokela.com/wp-content/uploads/2023/11/san-chim-vam-ho.jpg" alt="Nông trại du lịch Sân Chim Vàm Hồ">
+            <h3>Nông trại du lịch Sân Chim Vàm Hồ</h3>
+            <p>Khu bảo tồn chim nước tự nhiên với hệ sinh thái đa dạng.</p>
+            <a href="ho.html">Xem chi tiết</a>
+        </div>
+    </div>
+    
+    
+
+<div class="pagination-container">
+    <button id="prev-page">Trước</button>
+    <span id="page-info">1</span>
+    <button id="next-page">Tiếp</button>
 </div>
-
-        <div class="points" id="points-container">
-
-            <div class="point">
-
-                <img src="https://dulich.bentre.gov.vn/PublishingImages/DDL%20CON%20NGOAI%20-%202272022%20(2).jpg" alt="Cồn Phụng">
-
-                <h3>Cồn Phụng</h3>
-
-                <p></p>
-
-                <a href="conphung.html" id="xemchitiet"> xem chi tiết</a>
-
-
-
-            </div>
-
-            <div class="point">
-
-                <img src="https://www.homepaylater.vn/static/e291c03b24933b940664f33d2ba0e4f8/67090/cac_khu_du_lich_ben_tre_mang_ve_dep_cua_xu_so_miet_vuon_thanh_binh_tho_mong_7dec6b34ee.webp" alt="Cồn Quy">
-
-                <h3>Cồn Quy</h3>
-
-                <p></p>
-
-                <a href="chitietconquy.html" id="xemchitiet"> xem chi tiết</a>
-
-
-
-            </div>
-
-            <div class="point">
-
-                <img src="https://media.loveitopcdn.com/20397/ben-tre.png" alt="Cồn Bảo">
-
-                <h3>Cồn Bảo</h3>
-
-                <p></p>
-
-                <a href="chitietconbao.html" id="xemchitiet"> xem chi tiết</a>
-
-            </div>
-
-                        <div class="point">
-
-
-
-                <img src="https://www.homepaylater.vn/static/e291c03b24933b940664f33d2ba0e4f8/67090/cac_khu_du_lich_ben_tre_mang_ve_dep_cua_xu_so_miet_vuon_thanh_binh_tho_mong_7dec6b34ee.webp" alt="Cồn Quy">
-
-
-
-                <h3>Cồn Quy</h3>
-
-                <p>.</p>
-
-                <a href="chitietconquy.html" id="xemchitiet"> xem chi tiết</a>
-
-
-
-            </div>
-
-                        <div class="point">
-
-
-
-                <img src="https://www.homepaylater.vn/static/e291c03b24933b940664f33d2ba0e4f8/67090/cac_khu_du_lich_ben_tre_mang_ve_dep_cua_xu_so_miet_vuon_thanh_binh_tho_mong_7dec6b34ee.webp" alt="Cồn Quy">
-
-
-
-                <h3>Cồn Quy</h3>
-
-                <p></p>
-
-                <a href="chitietconquy.html" id="xemchitiet"> xem chi tiết</a>
-
-
-
-            </div>
-
-                        <div class="point">
-
-
-
-                <img src="https://www.homepaylater.vn/static/e291c03b24933b940664f33d2ba0e4f8/67090/cac_khu_du_lich_ben_tre_mang_ve_dep_cua_xu_so_miet_vuon_thanh_binh_tho_mong_7dec6b34ee.webp" alt="Cồn Quy">
-
-
-
-                <h3>Cồn Quy</h3>
-
-                <p></p>
-
-                <a href="chitietconquy.html" id="xemchitiet"> xem chi tiết</a>
-
-
-
-            </div>
-
-
 
         </div>
 
@@ -169,8 +143,19 @@
             <label for="destination">Chọn Điểm Đến:</label>
             <select id="destination">
                 <option value="Cồn Phụng">Cồn Phụng</option>
-                <option value="Cồn Quy">Cồn Quy</option>
-                <option value="Cồn Bảo">Cồn Bảo</option>
+                <option value="di tích đạo dừa">
+                    Di  tích đạo dừa</option>
+                    <option value="Bảo tàng tỉnh bến tre">Bảo Tàng Tỉnh Bến Tre</option>
+                    <option value="Đền thờ và mộ NĐC">Đền Thờ và Mộ Nguyễn Đình Chiểu</option>
+                  <option value="Đình Phú Tự">Đình Phú Tự</option>
+                    
+                    <option value="Làng hoa giấy Bến Tre">Làng hoa giấy Bến Tre</option>
+                    <option value="Khu du lịch Cồn Ốc">Khu du lịch Cồn Ốc</option>
+                    <option value="Làng Xanh Bến Tre">Làng Xanh Bến Tre</option>
+                    <option value="Nhà truyền thống Đồng Khởi">Nhà truyền thống Đồng Khởi</option>
+                    <option value="Chùa Vạn Phước">Chùa Vạn Phước</option>
+                    <option value="Nông trại du lịch Sân Chim Vàm Hồ">Nông trại du lịch Sân Chim Vàm Hồ</option>
+                
             </select>
 
             <label for="people">Số Lượng Người:</label>
@@ -187,27 +172,87 @@
         <p id="tour-message" style="color: green; display: none;">✅ Đặt tour thành công!</p>
     </div>
 </section>
-    <section id="danh-gia">
+<section id="danh-gia">
+    <h2>Đánh Giá và Bình Luận</h2>
+    <p id="login-status"></p>
 
-        <h2>Đánh Giá và Bình Luận</h2>
-
-    
-        </div>
+    <div class="review-container">
         <form id="review-form">
-    <textarea id="review-text" placeholder="Chia sẻ cảm nhận của bạn..." rows="4" style="width: 100%;"></textarea>
-    <button type="submit">Gửi Đánh Giá</button>
-</form>
-<div id="reviews"></div>
-<p id="login-status"></p>
+            <textarea id="review-text" placeholder="Chia sẻ cảm nhận của bạn..." rows="4"></textarea>
+            <button type="submit">Gửi Đánh Giá</button>
+        </form>
+
+        <div id="reviews">
+            <h3>Đánh Giá Từ Khách Hàng</h3>
+            <div class="review-list"></div>
+        </div>
+    </div>
 </section>
 
 
 
-    <footer>
+      <footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Về Chúng Tôi</h3>
+            <p>Website du lịch Bến Tre, cung cấp thông tin điểm tham quan, đặt tour và đánh giá trải nghiệm.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Liên Hệ</h3>
+            <p>Email: pn25**@gmail.comc</p>
+            <p>Hotline: 0925**0072</p>
+            <p>Địa chỉ: Bến Tre, Việt Nam</p>
+        </div>
+        
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Bến Tre Travel. All rights reserved.</p>
+    </div>
+</footer>
 
-        <p>&copy; 2025 Du Lịch Bến Tre - Tất cả các quyền được bảo vệ</p>
+<!-- Thêm Font Awesome để có icon đẹp -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-    </footer>
+<style>
+    footer {
+        background-color: #2c3e50;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 14px;
+    }
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px;
+    }
+    .footer-section {
+        width: 30%;
+        min-width: 250px;
+        margin: 10px 0;
+    }
+    .footer-section h3 {
+        margin-bottom: 10px;
+    }
+    .social-icons a {
+        color: white;
+        font-size: 20px;
+        margin: 0 10px;
+        transition: 0.3s;
+    }
+    .social-icons a:hover {
+        color: #f39c12;
+    }
+    .footer-bottom {
+        margin-top: 10px;
+        padding: 10px 0;
+        border-top: 1px solid #bdc3c7;
+    }
+</style>
+
 
     <script src="a.js"></script>
 
